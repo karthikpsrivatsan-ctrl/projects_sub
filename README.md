@@ -1,120 +1,111 @@
-# GPU Cloud Pricing & Market Research
+# GPU Cloud Pricing and Workload Economics
 
-**An independent research project exploring GPU cloud pricing, AI computing costs, and the economics of GPU infrastructure.**
+**Independent undergraduate research project | Data Science & AI | 2026**
 
-**Status:** Research in Progress  
-**Area:** AI Infrastructure | Cloud Computing | Data Analysis | Technology Economics
+**Status:** In progress — research design and data collection  
+**Focus:** GPU-as-a-Service (GPUaaS), cloud pricing, AI workload costs, and the Indian AI infrastructure market
 
-## About the Project
+## Overview
 
-As a second-year student pursuing a B.S. in Data Science and Artificial Intelligence at IIM Sambalpur, I've become interested in the infrastructure that makes modern AI systems possible, particularly the growing demand for GPUs used in training and running AI models.
+GPUs are essential for many modern AI applications, but accessing them through the cloud can be expensive. While several providers publish GPU rental rates, comparing their offerings is not as simple as choosing the lowest hourly price. Hardware specifications, included resources, location, billing terms, and the type of AI workload can all affect the actual cost.
 
-While exploring this area, I came across a question that interested me: **why do different cloud providers charge different prices for GPU computing, and how can we determine which option is actually more cost-effective?**
+I'm a second-year B.S. Data Science and Artificial Intelligence student at IIM Sambalpur. I started this independent project to better understand **how GPU cloud services are priced and how those prices translate into costs for people building or running AI systems**.
 
-GPU cloud services allow researchers, startups, and companies to access computing power without purchasing expensive hardware. However, comparing these services isn't always straightforward. The cost depends on factors such as GPU specifications, cloud provider, pricing model, location, and workload requirements.
+The project begins with a small, source-verified pricing dataset and will gradually expand into comparative analysis and workload-based cost estimates. I'm particularly interested in what these findings could mean for researchers, startups, and GPU cloud providers in India.
 
-Through this independent project, I want to understand these differences using publicly available data and develop a clearer picture of how GPU computing is priced and used.
+## Research question
 
-## Research Question
+> How do GPU cloud prices differ across providers, and how useful is the advertised price per GPU-hour for comparing the cost of AI workloads?
 
-**How do GPU cloud prices vary across providers, and what factors should be considered when comparing the cost of running AI workloads?**
+I plan to investigate:
 
-To explore this, I plan to investigate three smaller questions:
+1. How prices vary for comparable GPU configurations across selected providers.
+2. How region, memory, bundled resources, and billing terms affect the comparison.
+3. How workload requirements might change which GPU cloud option is more economical.
 
-1. How much do cloud providers charge for comparable GPU configurations?
-2. How do GPU specifications, pricing models, and other included resources affect these comparisons?
-3. How might these pricing differences influence the cost of AI training and inference workloads?
+This is an **exploratory undergraduate research project**. The questions and methods may be refined as I collect data and review relevant literature.
 
-## Research Approach
+## Research approach
 
-### 1. Understanding the GPU Cloud Market
+### 1. Understand the provider landscape
 
-I'll begin by studying the basic structure of the GPU cloud industry, including the differences between major cloud platforms and specialised GPU providers.
+I will study different types of cloud GPU providers, including hyperscalers, specialist GPU cloud companies, and Indian providers. Initial candidates include AWS, Google Cloud, Lambda, CoreWeave, Yotta, and E2E Networks.
 
-Some providers I plan to explore include:
+The final comparison will depend on which providers have **publicly verifiable prices and sufficiently comparable configurations**. I will document omissions rather than fill gaps with estimates presented as facts.
 
-- AWS and Google Cloud
-- CoreWeave and Lambda
-- Indian providers such as Yotta and E2E Networks
+### 2. Build a documented pricing dataset
 
-I'll also look at the development of AI computing infrastructure in India and how domestic providers are positioning themselves in this market.
+For each public quote I use, I plan to record:
 
-### 2. Collecting and Comparing GPU Pricing Data
+- Provider, GPU model and number of GPUs
+- Region, CPU/RAM and other included resources (when available)
+- Original price, currency, billing unit and pricing model
+- Date collected, source URL, and relevant restrictions or exclusions
 
-The next step is to build a small dataset using publicly available pricing information.
+A first comparison metric will be:
 
-Where available, I plan to collect information about GPU models, memory, hourly rental prices, regions, billing options, and included computing resources.
+```text
+Price per GPU-hour = Instance hourly price / Number of GPUs
+```
 
-Using Python and pandas, I'll organise the data and compare prices across providers.
+This is useful for describing list prices, **not a complete measure of performance or value**. I will avoid treating different GPU generations, spot versus on-demand rates, or different contractual terms as directly equivalent.
 
-One of the initial metrics I'll use is:
+### 3. Analyse prices with Python
 
-**Cost per GPU-hour = Hourly instance price / Number of GPUs**
+Using pandas and Jupyter Notebook, I plan to clean and inspect the pricing observations, calculate normalised rates, and build simple charts. The initial objective is a reproducible comparison of a small number of providers and GPU configurations—not a comprehensive ranking of the market.
 
-However, I'll also consider the limitations of this metric, since two GPUs with different performance characteristics cannot necessarily be compared using hourly prices alone.
+### 4. Explore AI workload economics
 
-The aim is to make comparisons as consistent and transparent as possible rather than simply identifying the lowest advertised price.
+After completing the initial dataset, I hope to estimate costs for a few clearly defined AI training or inference scenarios. If I can obtain suitable GPU access or comparable benchmark data, I may extend the analysis to measures such as inference throughput and cost per unit of output.
 
-### 3. Exploring AI Workload Costs
+**Assumption-based estimates, third-party benchmarks, and experiments I run myself will be labelled separately.**
 
-Once I've established a basic pricing comparison, I want to explore how these differences could affect the cost of running AI workloads.
+## Planned repository contents
 
-This may include estimating the computing costs of model training and inference under clearly stated assumptions.
+These are **planned folders**, not completed outputs:
 
-If suitable benchmarking data or computing resources become available, I would also like to explore performance-related metrics such as inference throughput and cost per unit of output.
+```text
+.
+├── README.md
+├── data/           # Public pricing observations and data dictionary
+├── sources/        # Source log and collection dates
+├── notebooks/      # Data cleaning, exploration and visualisations
+└── reports/        # Research notes, methodology and findings
+```
 
-This part of the project will depend on the data and resources available, and any estimates will be distinguished from actual measurements.
+As the project develops, I aim to publish:
 
-### 4. Analysing and Presenting Findings
+- A source-verified GPU pricing dataset
+- A reproducible Python notebook comparing selected offerings
+- A few charts explaining the main differences
+- A short write-up of observations, assumptions, and limitations
+- An optional workload cost model, if the data support one
 
-I plan to use data analysis and visualisation to identify useful patterns in the dataset.
+## Current progress and next milestone
 
-The broader objective is to understand how technical specifications and pricing decisions connect to the economics of AI infrastructure.
+**Current stage:** The research question and initial methodology have been defined. No completed pricing study or benchmark results are claimed yet.
 
-I am particularly interested in what these comparisons might mean for startups, researchers, and organisations deciding between different computing options.
+**Next milestone:** Collect a first batch of dated public pricing observations, preferably for the same GPU model across multiple providers, and record any differences in region, billing terms or bundled resources. Then publish a documented dataset and the first cleaning/analysis notebook.
 
-## Tools and Skills
+## Research practices
 
-The project is intended to involve:
+- Link every pricing observation to its original source and collection date.
+- Preserve original currencies; document any exchange-rate conversions.
+- Separate on-demand, spot, and committed pricing.
+- Clearly state assumptions and avoid unsupported performance comparisons.
+- Report missing data and limitations alongside findings.
+- Update conclusions when new evidence becomes available.
 
-- **Python and pandas** for data collection, cleaning, and analysis
-- **Matplotlib / Seaborn** for data visualisation
-- **Excel** for pricing comparisons and basic cost modelling
-- **Jupyter Notebook** for documenting and reproducing analysis
-- **Public cloud documentation and research literature** as data sources
+## Why I'm doing this
 
-## Planned Outcomes
+I want to connect what I'm learning in Python, data analysis and AI with a practical question about the infrastructure behind AI systems. Working through the data myself is also a way to learn how to frame a research question, check sources, build reproducible analyses and explain results responsibly.
 
-As the project progresses, I aim to develop:
-
-- A documented dataset of publicly available GPU cloud pricing
-- Python notebooks comparing selected providers and configurations
-- Visualisations explaining pricing differences
-- A basic model exploring the cost of selected AI workloads
-- A short research report discussing findings, assumptions, and limitations
-
-These are planned outcomes and will be added to the repository as they are completed.
-
-## Current Status
-
-This project is in its early stages. The research question and initial methodology have been outlined, and the next step is to develop the pricing dataset and begin the comparative analysis.
-
-The scope and methodology may evolve as I gain a better understanding of GPU infrastructure and the availability of reliable data.
-
-## Why I'm Working on This
-
-My coursework in Data Science and AI has introduced me to machine learning, programming, and quantitative analysis. This project is an opportunity to connect those subjects with a part of the AI industry that I would like to understand better.
-
-I'm especially interested in the intersection of **AI technology, computing infrastructure, and business economics**.
-
-Beyond learning about GPU cloud services, I hope to gain practical experience in conducting independent research: asking a focused question, working with real-world data, evaluating assumptions, and communicating findings clearly.
-
-I also hope this project can serve as a foundation for further research or collaborative work in AI infrastructure and cloud computing.
+I hope this project will give me a useful foundation for future research or industry work related to AI infrastructure and cloud computing.
 
 ---
 
 **Karthik Srivatsan**  
 B.S. Data Science & Artificial Intelligence  
-Indian Institute of Management Sambalpur
+IIM Sambalpur
 
-*Independent student research project | 2026*
+*Independent student project. This repository is not affiliated with the cloud providers mentioned above.*
